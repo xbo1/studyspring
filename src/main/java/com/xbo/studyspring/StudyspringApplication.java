@@ -2,6 +2,7 @@ package com.xbo.studyspring;
 
 import com.xbo.studyspring.config.CustomFilter;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -14,6 +15,7 @@ import javax.servlet.Filter;
 @SpringBootApplication
 @ServletComponentScan //使用FilterRegistrationBean时注释掉
 @PropertySource(value="classpath:my.properties",encoding="utf-8")
+@MapperScan("com.xbo.studyspring.*.mapper")
 @Slf4j
 public class StudyspringApplication {
     public static void main(String[] args) {
