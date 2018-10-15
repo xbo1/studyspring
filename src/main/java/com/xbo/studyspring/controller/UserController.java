@@ -8,6 +8,8 @@ import com.xbo.studyspring.exception.CommonException;
 import com.xbo.studyspring.model.UserReq;
 import com.xbo.studyspring.model.UserResp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -44,6 +46,7 @@ public class UserController {
     }
 
     @PostMapping("update")
+    @CacheEvict(value = "xbo", key = "#userReq.id")
     public Map<String,String> updateUser(@Valid @RequestBody UserReq userReq){
 
         if(userReq.getId() == null || "".equals(userReq.getId())) {
@@ -60,6 +63,7 @@ public class UserController {
     }
 
     @GetMapping("/get/{id}")
+    @Cacheable(value = "xbo", key = "#id")
     public Map<String,Object> getUser(@PathVariable("id") String id){
         //查询
         User user = userService.getById(id);
