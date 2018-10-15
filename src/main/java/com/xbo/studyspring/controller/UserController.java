@@ -7,6 +7,9 @@ import com.xbo.studyspring.biz.service.IUserService;
 import com.xbo.studyspring.exception.CommonException;
 import com.xbo.studyspring.model.UserReq;
 import com.xbo.studyspring.model.UserResp;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -22,12 +25,14 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/user")
+@Api(tags = "用户API")
 public class UserController {
 
     @Autowired
     IUserService userService;
 
     @PostMapping("add")
+    @ApiOperation(value="用户新增")
     //正常业务时， 需要在user类里面进行事务控制，控制层一般不进行业务控制的。
     //@Transactional(rollbackFor = Exception.class)
     public Map<String,String> addUser(@Valid @RequestBody UserReq userReq){
@@ -46,6 +51,7 @@ public class UserController {
     }
 
     @PostMapping("update")
+    @ApiOperation(value="用户修改")
     @CacheEvict(value = "xbo", key = "#userReq.id")
     public Map<String,String> updateUser(@Valid @RequestBody UserReq userReq){
 
@@ -63,6 +69,8 @@ public class UserController {
     }
 
     @GetMapping("/get/{id}")
+    @ApiOperation(value="用户查询(ID)")
+    @ApiImplicitParam(name="id",value="查询ID",required=true)
     @Cacheable(value = "xbo", key = "#id")
     public Map<String,Object> getUser(@PathVariable("id") String id){
         //查询
@@ -84,6 +92,7 @@ public class UserController {
     }
 
     @GetMapping("/page")
+    @ApiOperation(value="用户查询(分页)")
     public Map<String,Object> pageUser(int current, int size){
         //分页
         Page<User> page = new Page<>(current, size);
