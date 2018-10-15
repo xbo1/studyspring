@@ -35,5 +35,13 @@ spring:
         # 连接超时时间（毫秒）
     timeout: 2000ms
 
+  # rabbitmq相关配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+
 # 开启swagger
 swagger.enabled: true

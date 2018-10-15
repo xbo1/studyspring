@@ -6,6 +6,7 @@ import com.xbo.studyspring.model.Demo;
 import com.xbo.studyspring.model.DemoReq;
 import com.xbo.studyspring.util.ValidatorUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,4 +56,15 @@ public class DemoController {
 
     @Value("${blog.value}")
     String value;
+
+    //AmqpTemplate接口定义了发送和接收消息的基本操作,目前spring官方也只集成了Rabbitmq一个消息队列。。
+    @Autowired
+    AmqpTemplate rabbitmqTemplate;
+
+    @GetMapping("/send")
+    public String send(String msg) {
+        //发送消息
+        rabbitmqTemplate.convertAndSend("xbo", msg);
+        return "消息：" + msg + ",已发送";
+    }
 }
