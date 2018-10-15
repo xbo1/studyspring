@@ -67,5 +67,13 @@ spring:
       suffix: .jsp
       prefix: /WEB-INF/jsp/
 
+  servlet:
+    multipart:
+      enabled: false
+      # 最大支持文件大小 即单个文件大小
+      max-file-size: 1Mb
+      # 最大支持请求大小 即一次性上传的总文件大小
+      max-request-size: 10Mb
+
 # 开启swagger
 swagger.enabled: true
