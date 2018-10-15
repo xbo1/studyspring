@@ -67,4 +67,9 @@ public class DemoController {
         rabbitmqTemplate.convertAndSend("xbo", msg);
         return "消息：" + msg + ",已发送";
     }
+
+    @GetMapping("/mock")
+    public String demo(String msg) {
+        return msg;
+    }
 }
