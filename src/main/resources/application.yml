@@ -42,6 +42,30 @@ spring:
     username: guest
     password: guest
 
+  freemarker:
+    # 缓存配置 开发阶段应该配置为false 因为经常会改
+    cache: false
+    # 模版后缀名 默认为ftl
+    suffix: .html
+    # 文件编码
+    charset: UTF-8
+    # 模版加载的目录
+    template-loader-path: classpath:/templates/
+    # 配置
+    # locale    该选项指定该模板所用的国家/语言选项
+    # number_format    指定格式化输出数字的格式：currency、
+    # boolean_format    指定两个布尔值的语法格式,默认值是true,false
+    # date_format,time_format,datetime_format    定格式化输出日期的格式
+    # time_zone    设置格式化输出日期时所使用的时区
+    # 数字 千分位标识
+    settings:
+      number_format: ##0.00
+
+  #jsp 支持
+  mvc:
+    view:
+      suffix: .jsp
+      prefix: /WEB-INF/jsp/
 
 # 开启swagger
 swagger.enabled: true
