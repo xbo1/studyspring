@@ -1,13 +1,12 @@
 package com.xbo.studyspring;
 
-import com.xbo.studyspring.config.CustomFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -16,8 +15,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
-import javax.servlet.Filter;
-
 @SpringBootApplication
 @ServletComponentScan //使用FilterRegistrationBean时注释掉
 @PropertySource(value="classpath:my.properties",encoding="utf-8")
@@ -25,6 +22,7 @@ import javax.servlet.Filter;
 @EnableWebSocket
 @EnableAsync
 @EnableScheduling
+@EnableAspectJAutoProxy
 @Slf4j
 public class StudyspringApplication {
     public static void main(String[] args) {
