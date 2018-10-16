@@ -9,6 +9,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
@@ -19,6 +20,7 @@ import javax.servlet.Filter;
 @PropertySource(value="classpath:my.properties",encoding="utf-8")
 @MapperScan("com.xbo.studyspring.*.mapper")
 @EnableWebSocket
+@EnableAsync
 @Slf4j
 public class StudyspringApplication {
     public static void main(String[] args) {
