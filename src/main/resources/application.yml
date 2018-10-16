@@ -75,5 +75,7 @@ spring:
       # 最大支持请求大小 即一次性上传的总文件大小
       max-request-size: 10Mb
 
+logging:
+  register-shutdown-hook: true
 # 开启swagger
 swagger.enabled: true

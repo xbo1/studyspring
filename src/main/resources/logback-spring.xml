@@ -28,6 +28,21 @@
             <MaxFileSize>10MB</MaxFileSize>
         </triggeringPolicy>
     </appender>
+    <!-- 自定义输出 -->
+    <appender name="MyLogback"
+              class="com.xbo.studyspring.config.MyLogbackAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!-- 日志收集最低日志级别 -->
+            <level>INFO</level>
+        </filter>
+        <layout
+                class="ch.qos.logback.classic.PatternLayout">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </layout>
+        <!-- 自定义参数 -->
+        <printString>xbo的日志(logback)</printString>
+    </appender>
 
     <!-- 自定义包下设置为INFO,则可以看见输出的日志不包含debug输出了 -->
     <logger name="com.xbo.studyspring" level="INFO"/>
@@ -36,6 +51,7 @@
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
+        <appender-ref ref="MyLogback" />
     </root>
 
     <!-- 读取 spring.application.name 属性来生成日志文件名
