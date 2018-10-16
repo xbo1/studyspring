@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 //注册器名称为customFilter,拦截的url为所有
-@WebFilter(filterName="customFilter",urlPatterns={"/*"})
+@WebFilter(filterName="customFilter",urlPatterns={"/*"},asyncSupported=true)
 @Slf4j
 public class CustomFilter implements Filter {
     @Override
