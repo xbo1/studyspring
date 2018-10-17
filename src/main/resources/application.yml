@@ -83,7 +83,7 @@ spring:
     # 发送方帐号
     username: wangshyn@163.com
     # 发送方密码（授权码）
-    password: test
+    password: 2150560wang
     #javaMailProperties 配置
     # 开启用户身份验证
     properties:
@@ -93,7 +93,31 @@ spring:
 #        starttls:
 #          enable: true
 #          required: true
+  # 授权登录
+  security:
+    user:
+      name: xbo
+      password: 123456
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # * 在yaml 文件属于关键字
+  endpoint:
+    # 开启关闭应用端点
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  server:
+    port: 1234
+#    servlet: # 测试发现无法获取到正常的endpoints
+#      context-path: "/monitor" # 只有在设置了 management.server.port 时才有效
+
 logging:
   register-shutdown-hook: true
+
+
 # 开启swagger
 swagger.enabled: true
