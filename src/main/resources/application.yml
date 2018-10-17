@@ -83,7 +83,7 @@ spring:
     # 发送方帐号
     username: wangshyn@163.com
     # 发送方密码（授权码）
-    password: 2150560wang
+    password: test
     #javaMailProperties 配置
     # 开启用户身份验证
     properties:
